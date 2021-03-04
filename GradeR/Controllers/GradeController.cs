@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Entities;
+using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Routing;
+using Microsoft.AspNetCore.Mvc;
 using Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GradeR.Controllers
 {
-    [Route("grade")]
     public class GradeController : ControllerBase
     {
         private readonly StudentService studentService;
@@ -15,10 +18,12 @@ namespace GradeR.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetStudentGrades()
+        [EnableQuery()]
+        [ODataRoute("grade")]
+        public async Task<List<Student>> GetGrade()
         {
-            var test = await this.studentService.GetAllStudents();
-            return Ok(test);
+            IList<Student> test = await this.studentService.GetAllStudents();
+            return new List<Student>(test);
         }
     }
 }
