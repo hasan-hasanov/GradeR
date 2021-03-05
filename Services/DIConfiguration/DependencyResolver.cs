@@ -1,4 +1,4 @@
-﻿using Core.Command;
+﻿using Core.Commands;
 using Core.Entities;
 using Core.Queries;
 using DAL;

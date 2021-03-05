@@ -1,5 +1,5 @@
 ﻿using Common.Log;
-using Core.Command;
+using Core.Commands;
 using Core.Entities;
 using Microsoft.Extensions.Logging;
 using System.Threading;

@@ -9,5 +9,7 @@
         public Student Student { get; set; }
 
         public Teacher Teacher { get; set; }
+
+        // TODO: Add the course here too
     }
 }
