@@ -3,6 +3,7 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Services;
+using Services.Models.RequestModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,28 +19,28 @@ namespace GradeR.Controllers
             this.studentService = studentService;
         }
 
-        [HttpGet]
-        [EnableQuery]
-        [ODataRoute]
-        public async Task<List<Student>> Get()
-        {
-            IList<Student> test = await this.studentService.GetAllStudents();
-            return new List<Student>(test);
-        }
+        //[HttpGet]
+        //[EnableQuery]
+        //[ODataRoute]
+        //public async Task<List<Student>> Get()
+        //{
+        //    IList<Student> test = await this.studentService.GetAllStudents();
+        //    return new List<Student>(test);
+        //}
 
-        [HttpGet]
-        [EnableQuery]
-        [ODataRoute("({id})")]
-        public async Task<List<Student>> GetGrade([FromODataUri] long id)
-        {
-            IList<Student> test = await this.studentService.GetAllStudents();
-            return new List<Student>(test);
-        }
+        //[HttpGet]
+        //[EnableQuery]
+        //[ODataRoute("({id})")]
+        //public async Task<List<Student>> GetGrade([FromODataUri] long id)
+        //{
+        //    IList<Student> test = await this.studentService.GetAllStudents();
+        //    return new List<Student>(test);
+        //}
 
         [HttpPost]
         [EnableQuery]
         [ODataRoute]
-        public async Task<List<Student>> PostGrade([FromODataUri] long id)
+        public async Task<List<Student>> PostGrade([FromODataUri] PostGradeRequestModel model)
         {
             IList<Student> test = await this.studentService.GetAllStudents();
             return new List<Student>(test);
