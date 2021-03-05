@@ -10,6 +10,6 @@
 
         public Teacher Teacher { get; set; }
 
-        // TODO: Add the course here too
+        public Course Course { get; set; }
     }
 }

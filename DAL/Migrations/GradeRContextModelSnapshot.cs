@@ -49,6 +49,9 @@ namespace DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("CourseId")
+                        .HasColumnType("bigint");
+
                     b.Property<short>("StudentGrade")
                         .HasColumnType("smallint");
 
@@ -59,6 +62,8 @@ namespace DAL.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
 
@@ -166,6 +171,10 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Core.Entities.Grade", b =>
                 {
+                    b.HasOne("Core.Entities.Course", "Course")
+                        .WithMany("Grade")
+                        .HasForeignKey("CourseId");
+
                     b.HasOne("Core.Entities.Student", "Student")
                         .WithMany("Grades")
                         .HasForeignKey("StudentId");

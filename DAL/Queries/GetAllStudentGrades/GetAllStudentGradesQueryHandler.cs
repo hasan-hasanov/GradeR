@@ -26,6 +26,7 @@ namespace DAL.Queries.GetAllStudentGrades
             List<Grade> grades = await _context.Grades
                 .Include(s => s.Student)
                 .Include(t => t.Teacher)
+                .Include(g => g.Course)
                 .ToListAsync(cancellationToken);
             _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, grades.Count, nameof(Grade)));
 

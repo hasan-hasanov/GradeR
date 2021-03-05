@@ -14,5 +14,7 @@ namespace Core.Entities
         public DateTime EndDate { get; set; }
 
         public ICollection<StudentTeacherCourse> StudentTeacherCourses { get; set; }
+
+        public ICollection<Grade> Grade { get; set; }
     }
 }
