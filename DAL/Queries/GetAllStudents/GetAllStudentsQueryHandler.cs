@@ -23,7 +23,9 @@ namespace DAL.Queries.GetAllStudents
         public async Task<IList<Student>> HandleAsync(GetAllStudentsQuery query, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(Student)));
-            List<Student> students = await _context.Students.ToListAsync();
+            List<Student> students = await _context.Students
+                .Include(c => c.Courses)
+                .ToListAsync(cancellationToken);
             _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, students.Count, nameof(Student)));
 
             return students;

@@ -22,7 +22,10 @@ namespace DAL.Queries.GetStudentById
         public async Task<Student> HandleAsync(GetStudentByIdQuery query, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Student), query.Id));
-            Student student = await _context.Students.FirstOrDefaultAsync(s => s.Id == query.Id);
+            Student student = await _context.Students
+                .Include(c => c.Courses)
+                .FirstOrDefaultAsync(s => s.Id == query.Id, cancellationToken);
+
             if (student == null)
             {
                 _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogResources.GetItemNotFound, nameof(Student), query.Id));
