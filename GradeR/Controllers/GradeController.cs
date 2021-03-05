@@ -1,49 +1,45 @@
-﻿using Core.Entities;
-using Microsoft.AspNet.OData;
+﻿using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
-using Services;
-using Services.Models.RequestModels;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GradeR.Controllers
 {
-    [ODataRoutePrefix("grade")]
-    public class GradeController : ODataController
+    public class GradeController : ControllerBase
     {
-        private readonly StudentService studentService;
-
-        public GradeController(StudentService studentService)
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute("StudentA")]
+        public IEnumerable<StudentA> GetStudentA()
         {
-            this.studentService = studentService;
+            return new List<StudentA>
+            {
+                CreateNewStudent("Cody Allen", 130),
+                CreateNewStudent("Todd Ostermeier", 160),
+                CreateNewStudent("Viral Pandya", 140),
+            };
         }
 
-        //[HttpGet]
-        //[EnableQuery]
-        //[ODataRoute]
-        //public async Task<List<Student>> Get()
-        //{
-        //    IList<Student> test = await this.studentService.GetAllStudents();
-        //    return new List<Student>(test);
-        //}
+        private static StudentA CreateNewStudent(string name, int score)
+        {
+            return new StudentA
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                Score = score,
+            };
+        }
+    }
 
-        //[HttpGet]
-        //[EnableQuery]
-        //[ODataRoute("({id})")]
-        //public async Task<List<Student>> GetGrade([FromODataUri] long id)
-        //{
-        //    IList<Student> test = await this.studentService.GetAllStudents();
-        //    return new List<Student>(test);
-        //}
+#pragma warning disable SA1402 // File may only contain a single type
+    public class StudentA
+#pragma warning restore SA1402 // File may only contain a single type
+    {
+        public Guid Id { get; set; }
 
-        //[HttpPost]
-        //[EnableQuery]
-        //[ODataRoute]
-        //public async Task<List<Student>> PostGrade([FromODataUri] PostGradeRequestModel model)
-        //{
-        //    IList<Student> test = await this.studentService.GetAllStudents();
-        //    return new List<Student>(test);
-        //}
+        public string Name { get; set; }
+
+        public int Score { get; set; }
     }
 }

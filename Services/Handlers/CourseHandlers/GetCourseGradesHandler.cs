@@ -28,9 +28,7 @@ namespace Services.Handlers.CourseHandlers
         public async Task<IList<CourseGradeResponseModel>> Handle(GetCourseGradesRequestModel request, CancellationToken cancellationToken)
         {
             IList<Course> studentGrades = await _getAllCoursesQueryHandler.HandleAsync(new GetAllCoursesQuery());
-            IList<CourseGradeResponseModel> courseGrades = studentGrades.Select(c => new CourseGradeResponseModel(c)).ToList();
-
-            return courseGrades;
+            return null;
         }
     }
 }
