@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Services.Models.RequestModels
 {
-    public class GetTeachersRequestModel : IRequest<IList<TeacherResponseModel>>
+    public class GetCourseGradesRequestModel : IRequest<IList<CourseGradeResponseModel>>
     {
     }
 }

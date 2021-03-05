@@ -19,7 +19,7 @@ namespace DAL.Configs
                 .WithMany(x => x.Grades);
 
             builder.HasOne(x => x.Course)
-                .WithMany(x => x.Grade);
+                .WithMany(x => x.Grades);
         }
     }
 }

@@ -1,6 +1,6 @@
 using Core.Entities;
-using GradeR.Controllers;
 using GradeR.Filters;
+using MediatR;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
 using Services.DIConfiguration;
+using Services.Models.ResponseModels;
 
 namespace GradeR
 {
@@ -16,8 +17,6 @@ namespace GradeR
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
-
             services.AddMvcCore(options =>
             {
                 options.Filters.Add(new ProducesAttribute("application/json"));
@@ -28,6 +27,7 @@ namespace GradeR
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddOData();
             services.RegisterTypes();
+            services.AddMediatR(typeof(DependencyResolver).Assembly);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,7 +45,7 @@ namespace GradeR
         private IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Student>("Grade");
+            builder.EntitySet<CourseGradeResponseModel>("Course");
             return builder.GetEdmModel();
         }
     }

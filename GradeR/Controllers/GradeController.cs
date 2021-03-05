@@ -37,13 +37,13 @@ namespace GradeR.Controllers
         //    return new List<Student>(test);
         //}
 
-        [HttpPost]
-        [EnableQuery]
-        [ODataRoute]
-        public async Task<List<Student>> PostGrade([FromODataUri] PostGradeRequestModel model)
-        {
-            IList<Student> test = await this.studentService.GetAllStudents();
-            return new List<Student>(test);
-        }
+        //[HttpPost]
+        //[EnableQuery]
+        //[ODataRoute]
+        //public async Task<List<Student>> PostGrade([FromODataUri] PostGradeRequestModel model)
+        //{
+        //    IList<Student> test = await this.studentService.GetAllStudents();
+        //    return new List<Student>(test);
+        //}
     }
 }

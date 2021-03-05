@@ -1,10 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core.Entities;
+using System;
 
 namespace Services.Models.ResponseModels
 {
     public class TeacherResponseModel
     {
+        public TeacherResponseModel(Teacher teacher)
+        {
+            Id = teacher.Id;
+            FirstName = teacher.FirstName;
+            LastName = teacher.LastName;
+            BirthDate = teacher.BirthDate;
+            Rank = teacher?.Rank?.Name;
+        }
+
         public long Id { get; set; }
 
         public string FirstName { get; set; }
@@ -14,7 +23,5 @@ namespace Services.Models.ResponseModels
         public DateTime BirthDate { get; set; }
 
         public string Rank { get; set; }
-
-        public IList<CourseResponseModel> Courses { get; set; }
     }
 }

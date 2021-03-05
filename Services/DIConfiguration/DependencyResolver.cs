@@ -3,7 +3,7 @@ using Core.Entities;
 using Core.Queries;
 using DAL;
 using DAL.Commands.EvaluateStudent;
-using DAL.Queries.GetAllStudentGrades;
+using DAL.Queries.GetAllCourses;
 using DAL.Queries.GetAllStudents;
 using DAL.Queries.GetAllTeachers;
 using DAL.Queries.GetStudentById;
@@ -23,7 +23,7 @@ namespace Services.DIConfiguration
             serviceCollection.AddDbContext<GradeRContext>(x => x.UseSqlServer(@"Data Source=.;Initial Catalog=GradeR;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O"));
 
             // Queries
-            serviceCollection.AddScoped<IQueryHandler<GetAllStudentGradesQuery, IList<Grade>>, GetAllStudentGradesQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<GetAllCoursesQuery, IList<Course>>, GetAllCoursesQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetAllStudentsQuery, IList<Student>>, GetAllStudentsQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetAllTeachersQuery, IList<Teacher>>, GetAllTeachersQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetStudentByIdQuery, Student>, GetStudentByIdQueryHandler>();

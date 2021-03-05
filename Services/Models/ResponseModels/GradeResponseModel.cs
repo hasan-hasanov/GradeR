@@ -1,8 +1,17 @@
-﻿namespace Services.Models.ResponseModels
+﻿using Core.Entities;
+
+namespace Services.Models.ResponseModels
 {
     public class GradeResponseModel
     {
-        public int Id { get; set; }
+        public GradeResponseModel(Grade grade)
+        {
+            Id = grade.Id;
+            Grade = grade.StudentGrade;
+            Teacher = new TeacherResponseModel(grade.Teacher);
+        }
+
+        public long Id { get; set; }
 
         public short Grade { get; set; }
 

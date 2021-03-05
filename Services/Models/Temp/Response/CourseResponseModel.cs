@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Services.Models.ResponseModels
+namespace Services.Models.Temp.ResponseModels
 {
     public class CourseResponseModel
     {
