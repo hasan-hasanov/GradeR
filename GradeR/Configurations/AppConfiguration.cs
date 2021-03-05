@@ -10,6 +10,11 @@ namespace GradeR.Configurations
 {
     public class AppConfiguration
     {
+        public static void AddDependencies(IServiceCollection services, IConfigurationRoot configuration)
+        {
+            services.RegisterTypes(configuration);
+        }
+
         public static void AddMvcCore(IServiceCollection services)
         {
             services.AddMvcCore(options =>
@@ -19,11 +24,6 @@ namespace GradeR.Configurations
             })
             .AddApiExplorer()
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-        }
-
-        public static void AddDependencies(IServiceCollection services, IConfigurationRoot configuration)
-        {
-            services.RegisterTypes(configuration);
         }
 
         public static void AddMediatr(IServiceCollection services)

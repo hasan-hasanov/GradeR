@@ -30,6 +30,7 @@ namespace GradeR
         {
             AppConfiguration.UseHttpsRedirection(app);
             AppConfiguration.UseRouting(app);
+            AppConfiguration.UseHealthCheck(app);
 #pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
             AppConfiguration.UseMvc(app);
 #pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.

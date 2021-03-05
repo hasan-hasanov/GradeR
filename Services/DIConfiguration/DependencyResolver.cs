@@ -21,7 +21,12 @@ namespace Services.DIConfiguration
             this IServiceCollection serviceCollection,
             IConfiguration configuration)
         {
+            // Add database connection string
             serviceCollection.AddDbContext<GradeRContext>(x => x.UseSqlServer(configuration.GetConnectionString("GradeR")));
+
+            // Add health Checks
+            serviceCollection.AddHealthChecks()
+                .AddDbContextCheck<GradeRContext>();
 
             // Queries
             serviceCollection.AddScoped<IQueryHandler<GetAllCoursesQuery, IList<Course>>, GetAllCoursesQueryHandler>();
