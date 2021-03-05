@@ -27,5 +27,14 @@ namespace GradeR.Controllers
             IList<CourseGradeResponseModel> courseGradeResponse = await _mediator.Send(new GetCourseGradesRequestModel());
             return courseGradeResponse;
         }
+
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute("({id})")]
+        public async Task<CourseGradeResponseModel> GetCourse([FromODataUri] long id)
+        {
+            CourseGradeResponseModel courseGradeResponse = await _mediator.Send(new GetCourseGradeByIdRequestModel(id));
+            return courseGradeResponse;
+        }
     }
 }

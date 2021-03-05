@@ -5,7 +5,7 @@ using DAL;
 using DAL.Commands.EvaluateStudent;
 using DAL.Queries.GetAllCourses;
 using DAL.Queries.GetAllStudents;
-using DAL.Queries.GetAllTeachers;
+using DAL.Queries.GetCourseById;
 using DAL.Queries.GetStudentById;
 using DAL.Queries.GetTeacherById;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +31,7 @@ namespace Services.DIConfiguration
             // Queries
             serviceCollection.AddScoped<IQueryHandler<GetAllCoursesQuery, IList<Course>>, GetAllCoursesQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetAllStudentsQuery, IList<Student>>, GetAllStudentsQueryHandler>();
-            serviceCollection.AddScoped<IQueryHandler<GetAllTeachersQuery, IList<Teacher>>, GetAllTeachersQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<GetCourseByIdQuery, Course>, GetCourseByIdQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetStudentByIdQuery, Student>, GetStudentByIdQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetTeacherByIdQuery, Teacher>, GetTeacherByIdQueryHandler>();
 
