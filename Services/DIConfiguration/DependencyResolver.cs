@@ -1,6 +1,8 @@
-﻿using Core.Entities;
+﻿using Core.Command;
+using Core.Entities;
 using Core.Queries;
 using DAL;
+using DAL.Commands.EvaluateStudent;
 using DAL.Queries.GetAllStudentGrades;
 using DAL.Queries.GetAllStudents;
 using DAL.Queries.GetAllTeachers;
@@ -26,6 +28,9 @@ namespace Services.DIConfiguration
             serviceCollection.AddScoped<IQueryHandler<GetAllTeachersQuery, IList<Teacher>>, GetAllTeachersQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetStudentByIdQuery, Student>, GetStudentByIdQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetTeacherByIdQuery, Teacher>, GetTeacherByIdQueryHandler>();
+
+            // Commands
+            serviceCollection.AddScoped<ICommandHandler<EvaluateStudentCommand>, EvaluateStudentCommandHandler>();
 
             // TODO: Clear these gradually and replace them with better patterns
             serviceCollection.AddScoped<StudentService>();
