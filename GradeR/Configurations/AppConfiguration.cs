@@ -1,13 +1,10 @@
 ﻿using MediatR;
-using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OData.Edm;
 using Services.DIConfiguration;
-using Services.Models.ResponseModels;
 
 namespace GradeR.Configurations
 {
@@ -49,20 +46,18 @@ namespace GradeR.Configurations
             app.UseRouting();
         }
 
+        public static void UseHealthCheck(IApplicationBuilder app)
+        {
+            app.UseHealthChecks("/hc");
+        }
+
         public static void UseMvc(IApplicationBuilder app)
         {
             app.UseMvc(routeBuilder =>
             {
                 routeBuilder.Select().Filter();
-                routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
+                routeBuilder.MapODataServiceRoute("odata", "odata", EdmConfiguration.GetEdmModel());
             });
-        }
-
-        private static IEdmModel GetEdmModel()
-        {
-            var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<CourseGradeResponseModel>("Course");
-            return builder.GetEdmModel();
         }
     }
 }

@@ -33,9 +33,6 @@ namespace Services.DIConfiguration
             // Commands
             serviceCollection.AddScoped<ICommandHandler<EvaluateStudentCommand>, EvaluateStudentCommandHandler>();
 
-            // TODO: Clear these gradually and replace them with better patterns
-            serviceCollection.AddScoped<StudentService>();
-
             return serviceCollection;
         }
     }
