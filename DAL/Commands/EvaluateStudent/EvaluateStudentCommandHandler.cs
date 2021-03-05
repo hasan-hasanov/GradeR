@@ -18,13 +18,14 @@ namespace DAL.Commands.EvaluateStudent
             _context = context;
         }
 
-        public async Task Handle(EvaluateStudentCommand command, CancellationToken cancellationToken = default)
+        public async Task HandleAsync(EvaluateStudentCommand command, CancellationToken cancellationToken = default)
         {
             _logger.LogInformation(LogEvents.InsertingItem, string.Format(LogResources.InsertingItem, nameof(Grade)));
             Grade grade = new Grade()
             {
                 Student = command.Student,
                 Teacher = command.Teacher,
+                Course = command.Course,
                 StudentGrade = command.Grade,
             };
 

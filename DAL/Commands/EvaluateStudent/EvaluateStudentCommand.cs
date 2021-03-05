@@ -5,11 +5,12 @@ namespace DAL.Commands.EvaluateStudent
 {
     public class EvaluateStudentCommand : ICommand
     {
-        public EvaluateStudentCommand(short grade, Student student, Teacher teacher)
+        public EvaluateStudentCommand(short grade, Student student, Teacher teacher, Course course)
         {
             Grade = grade;
             Student = student;
             Teacher = teacher;
+            Course = course;
         }
 
         public short Grade { get; }
@@ -17,5 +18,7 @@ namespace DAL.Commands.EvaluateStudent
         public Student Student { get; }
 
         public Teacher Teacher { get; }
+
+        public Course Course { get; }
     }
 }

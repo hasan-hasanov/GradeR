@@ -23,7 +23,6 @@ namespace DAL.Queries.GetTeacherById
         {
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Teacher), query.Id));
             Teacher teacher = await _context.Teachers
-                .Include(c => c.Courses)
                 .FirstOrDefaultAsync(t => t.Id == query.Id, cancellationToken);
 
             if (teacher == null)

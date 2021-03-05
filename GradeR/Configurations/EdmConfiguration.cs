@@ -10,7 +10,8 @@ namespace GradeR.Configurations
         {
             var builder = new ODataConventionModelBuilder()
                 .AddCourse()
-                .AddStudents();
+                .AddStudents()
+                .AddGrade();
 
             return builder.GetEdmModel();
         }
@@ -28,6 +29,13 @@ namespace GradeR.Configurations
         {
             builder.EntitySet<StudentResponseModel>("Student");
             builder.ComplexType<StudentGradeResponseModel>();
+
+            return builder;
+        }
+
+        private static ODataConventionModelBuilder AddGrade(this ODataConventionModelBuilder builder)
+        {
+            builder.EntitySet<StudentResponseModel>("Grade");
 
             return builder;
         }
