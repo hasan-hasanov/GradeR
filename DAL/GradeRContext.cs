@@ -11,7 +11,8 @@ namespace DAL
         {
         }
 
-        public GradeRContext(DbContextOptions options) : base(options)
+        public GradeRContext(DbContextOptions options)
+            : base(options)
         {
         }
 

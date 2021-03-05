@@ -8,14 +8,14 @@ namespace GradeR.Controllers
     public class StudentAController : ControllerBase
     {
         [HttpGet]
-        [EnableQuery()]
+        [EnableQuery]
         public IEnumerable<StudentA> Get()
         {
             return new List<StudentA>
             {
                 CreateNewStudent("Cody Allen", 130),
                 CreateNewStudent("Todd Ostermeier", 160),
-                CreateNewStudent("Viral Pandya", 140)
+                CreateNewStudent("Viral Pandya", 140),
             };
         }
 
@@ -25,15 +25,19 @@ namespace GradeR.Controllers
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                Score = score
+                Score = score,
             };
         }
     }
 
+#pragma warning disable SA1402 // File may only contain a single type
     public class StudentA
+#pragma warning restore SA1402 // File may only contain a single type
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
+
         public int Score { get; set; }
     }
 }

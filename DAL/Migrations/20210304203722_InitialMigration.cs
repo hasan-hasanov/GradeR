@@ -15,7 +15,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 200, nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
+                    EndDate = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -28,7 +28,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 200, nullable: false)
+                    Name = table.Column<string>(maxLength: 200, nullable: false),
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(maxLength: 200, nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    BirthDate = table.Column<DateTime>(nullable: false)
+                    BirthDate = table.Column<DateTime>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -59,7 +59,7 @@ namespace DAL.Migrations
                     FirstName = table.Column<string>(maxLength: 200, nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    RankId = table.Column<int>(nullable: true)
+                    RankId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -80,7 +80,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentGrade = table.Column<short>(nullable: false),
                     StudentId = table.Column<long>(nullable: true),
-                    TeacherId = table.Column<long>(nullable: true)
+                    TeacherId = table.Column<long>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -107,7 +107,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<long>(nullable: true),
                     CourseId = table.Column<long>(nullable: true),
-                    TeacherId = table.Column<long>(nullable: true)
+                    TeacherId = table.Column<long>(nullable: true),
                 },
                 constraints: table =>
                 {

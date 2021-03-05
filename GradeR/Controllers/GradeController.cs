@@ -18,7 +18,7 @@ namespace GradeR.Controllers
         }
 
         [HttpGet]
-        [EnableQuery()]
+        [EnableQuery]
         [ODataRoute("grade")]
         public async Task<List<Student>> GetGrade()
         {

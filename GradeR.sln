@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{9EFC12D5-B699-423B-B6AE-88BA46836CCC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StyleCop", "StyleCop", "{B35C6A03-38C7-4ACB-BE1C-D7ED260A4631}"
+	ProjectSection(SolutionItems) = preProject
+		StyleCop\stylecop.json = StyleCop\stylecop.json
+		StyleCop\StyleCop.ruleset = StyleCop\StyleCop.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
