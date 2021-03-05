@@ -9,6 +9,7 @@ using DAL.Queries.GetAllTeachers;
 using DAL.Queries.GetStudentById;
 using DAL.Queries.GetTeacherById;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
@@ -17,10 +18,10 @@ namespace Services.DIConfiguration
     public static class DependencyResolver
     {
         public static IServiceCollection RegisterTypes(
-            this IServiceCollection serviceCollection)
+            this IServiceCollection serviceCollection,
+            IConfiguration configuration)
         {
-            // TODO: Move this to config file
-            serviceCollection.AddDbContext<GradeRContext>(x => x.UseSqlServer(@"Data Source=.;Initial Catalog=GradeR;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O"));
+            serviceCollection.AddDbContext<GradeRContext>(x => x.UseSqlServer(configuration.GetConnectionString("GradeR")));
 
             // Queries
             serviceCollection.AddScoped<IQueryHandler<GetAllCoursesQuery, IList<Course>>, GetAllCoursesQueryHandler>();

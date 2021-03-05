@@ -1,51 +1,38 @@
-using MediatR;
-using Microsoft.AspNet.OData.Builder;
-using Microsoft.AspNet.OData.Extensions;
+using GradeR.Configurations;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OData.Edm;
-using Services.DIConfiguration;
-using Services.Models.ResponseModels;
 
 namespace GradeR
 {
     public class Startup
     {
+        private readonly IConfigurationRoot _configuration;
+
+        public Startup()
+        {
+            _configuration = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.Development.json", optional: true)
+               .AddJsonFile("appSettings.json", optional: true)
+               .AddEnvironmentVariables()
+               .Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore(options =>
-            {
-                options.Filters.Add(new ProducesAttribute("application/json"));
-                options.EnableEndpointRouting = false;
-            })
-            .AddApiExplorer()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
-            services.RegisterTypes();
-            services.AddMediatR(typeof(DependencyResolver).Assembly);
-
-            services.AddOData();
+            AppConfiguration.AddDependencies(services, _configuration);
+            AppConfiguration.AddMvcCore(services);
+            AppConfiguration.AddMediatr(services);
+            AppConfiguration.AddOdata(services);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseHttpsRedirection();
-            app.UseRouting();
-
-            app.UseMvc(routeBuilder =>
-            {
-                routeBuilder.Select().Filter();
-                routeBuilder.MapODataServiceRoute("odata", "odata", GetEdmModel());
-            });
-        }
-
-        private IEdmModel GetEdmModel()
-        {
-            var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<CourseGradeResponseModel>("Course");
-            return builder.GetEdmModel();
+            AppConfiguration.UseHttpsRedirection(app);
+            AppConfiguration.UseRouting(app);
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
+            AppConfiguration.UseMvc(app);
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
         }
     }
 }
