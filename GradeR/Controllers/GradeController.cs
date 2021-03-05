@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace GradeR.Controllers
 {
-    public class GradeController : ControllerBase
+    [ODataRoutePrefix("grade")]
+    public class GradeController : ODataController
     {
         private readonly StudentService studentService;
 
@@ -19,8 +20,26 @@ namespace GradeR.Controllers
 
         [HttpGet]
         [EnableQuery]
-        [ODataRoute("grade")]
-        public async Task<List<Student>> GetGrade()
+        [ODataRoute]
+        public async Task<List<Student>> Get()
+        {
+            IList<Student> test = await this.studentService.GetAllStudents();
+            return new List<Student>(test);
+        }
+
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute("({id})")]
+        public async Task<List<Student>> GetGrade([FromODataUri] long id)
+        {
+            IList<Student> test = await this.studentService.GetAllStudents();
+            return new List<Student>(test);
+        }
+
+        [HttpPost]
+        [EnableQuery]
+        [ODataRoute]
+        public async Task<List<Student>> PostGrade([FromODataUri] long id)
         {
             IList<Student> test = await this.studentService.GetAllStudents();
             return new List<Student>(test);

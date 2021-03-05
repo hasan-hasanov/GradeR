@@ -45,7 +45,6 @@ namespace GradeR
         private IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<StudentA>("StudentA");
             builder.EntitySet<Student>("Grade");
             return builder.GetEdmModel();
         }
