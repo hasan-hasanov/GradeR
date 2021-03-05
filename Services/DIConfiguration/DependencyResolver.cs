@@ -1,6 +1,7 @@
 ﻿using Core.Commands;
 using Core.Entities;
 using Core.Queries;
+using Core.Validation;
 using DAL;
 using DAL.Commands.EvaluateStudent;
 using DAL.Queries.GetAllCourses;
@@ -11,6 +12,8 @@ using DAL.Queries.GetTeacherById;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Services.Models.RequestModels;
+using Services.Validations;
 using System.Collections.Generic;
 
 namespace Services.DIConfiguration
@@ -37,6 +40,11 @@ namespace Services.DIConfiguration
 
             // Commands
             serviceCollection.AddScoped<ICommandHandler<EvaluateStudentCommand>, EvaluateStudentCommandHandler>();
+
+            // Validations
+            serviceCollection.AddScoped<IValidation<GetCourseGradeByIdRequestModel>, GetCourseGradeByIdRequestModelValidator>();
+            serviceCollection.AddScoped<IValidation<GetStudentByIdRequestModel>, GetStudentByIdRequestModelValidator>();
+            serviceCollection.AddScoped<IValidation<PostGradeRequestModel>, PostGradeRequestModelValidator>();
 
             return serviceCollection;
         }

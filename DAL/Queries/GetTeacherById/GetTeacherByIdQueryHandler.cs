@@ -28,8 +28,6 @@ namespace DAL.Queries.GetTeacherById
             if (teacher == null)
             {
                 _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogResources.GetItemNotFound, nameof(Teacher), query.Id));
-
-                // TODO: Handle ungracefull exit
             }
 
             _logger.LogInformation(LogEvents.GotItem, string.Format(LogResources.GotItem, nameof(Teacher)));

@@ -32,8 +32,6 @@ namespace DAL.Queries.GetCourseById
             if (course == null)
             {
                 _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogResources.GetItemNotFound, nameof(Course), query.Id));
-
-                // TODO: Handle ungracefull exit here.
             }
 
             _logger.LogInformation(LogEvents.GotItem, string.Format(LogResources.GotItem, nameof(Course)));
