@@ -55,7 +55,7 @@ namespace GradeR.Configurations
         {
             app.UseMvc(routeBuilder =>
             {
-                routeBuilder.Select().Filter();
+                routeBuilder.Select().Expand().OrderBy().Filter().Count().MaxTop(500);
                 routeBuilder.MapODataServiceRoute("odata", "odata", EdmConfiguration.GetEdmModel());
             });
         }
