@@ -5,16 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Temp\Request\GetStudentByIdRequestModel.cs" />
-    <Compile Remove="Models\Temp\Request\GetStudentsRequestModel.cs" />
-    <Compile Remove="Models\Temp\Request\GetTeacherByIdRequestModel.cs" />
-    <Compile Remove="Models\Temp\Request\GetTeachersRequestModel.cs" />
-    <Compile Remove="Models\Temp\Request\PostGradeRequestModel.cs" />
-    <Compile Remove="Models\Temp\Response\CourseResponseModel.cs" />
-    <Compile Remove="Models\Temp\Response\StudentResponseModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.12" />
@@ -38,16 +28,6 @@
 
   <ItemGroup>
     <AdditionalFiles Include="..\StyleCop\stylecop.json" Link="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Models\Temp\Request\GetStudentByIdRequestModel.cs" />
-    <None Include="Models\Temp\Request\GetStudentsRequestModel.cs" />
-    <None Include="Models\Temp\Request\GetTeacherByIdRequestModel.cs" />
-    <None Include="Models\Temp\Request\GetTeachersRequestModel.cs" />
-    <None Include="Models\Temp\Request\PostGradeRequestModel.cs" />
-    <None Include="Models\Temp\Response\CourseResponseModel.cs" />
-    <None Include="Models\Temp\Response\StudentResponseModel.cs" />
   </ItemGroup>
 
 </Project>

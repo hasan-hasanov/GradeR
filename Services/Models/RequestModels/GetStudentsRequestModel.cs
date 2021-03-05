@@ -2,7 +2,7 @@
 using Services.Models.ResponseModels;
 using System.Collections.Generic;
 
-namespace Services.Models.Temp.RequestModels
+namespace Services.Models.RequestModels
 {
     public class GetStudentsRequestModel : IRequest<IList<StudentResponseModel>>
     {

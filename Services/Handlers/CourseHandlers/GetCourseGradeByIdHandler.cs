@@ -27,7 +27,7 @@ namespace Services.Handlers.CourseHandlers
         public async Task<CourseGradeResponseModel> Handle(GetCourseGradeByIdRequestModel request, CancellationToken cancellationToken)
         {
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(CourseGradeResponseModel), request.Id));
-            Course course = await _getCourseByIdQuery.HandleAsync(new GetCourseByIdQuery(request.Id));
+            Course course = await _getCourseByIdQuery.HandleAsync(new GetCourseByIdQuery(request.Id), cancellationToken);
             CourseGradeResponseModel courseResponse = new CourseGradeResponseModel(course);
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GotItem, nameof(CourseGradeResponseModel)));
 
