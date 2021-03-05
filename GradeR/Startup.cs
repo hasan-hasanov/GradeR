@@ -1,4 +1,4 @@
-using GradeR.Controllers;
+using MediatR;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
+using Services.DIConfiguration;
+using Services.Models.ResponseModels;
 
 namespace GradeR
 {
@@ -20,6 +22,9 @@ namespace GradeR
             })
             .AddApiExplorer()
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.RegisterTypes();
+            services.AddMediatR(typeof(DependencyResolver).Assembly);
 
             services.AddOData();
         }
@@ -39,7 +44,7 @@ namespace GradeR
         private IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<StudentA>("StudentA");
+            builder.EntitySet<CourseGradeResponseModel>("Course");
             return builder.GetEdmModel();
         }
     }

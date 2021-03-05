@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Common.Log;
+using Core.Entities;
 using Core.Queries;
 using DAL.Queries.GetAllCourses;
 using MediatR;
@@ -27,8 +28,12 @@ namespace Services.Handlers.CourseHandlers
 
         public async Task<IList<CourseGradeResponseModel>> Handle(GetCourseGradesRequestModel request, CancellationToken cancellationToken)
         {
-            IList<Course> studentGrades = await _getAllCoursesQueryHandler.HandleAsync(new GetAllCoursesQuery());
-            return null;
+            _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(CourseGradeResponseModel)));
+            IList<Course> studentGrades = await _getAllCoursesQueryHandler.HandleAsync(new GetAllCoursesQuery(), cancellationToken);
+            IList<CourseGradeResponseModel> studentGradesResponse = studentGrades.Select(s => new CourseGradeResponseModel(s)).ToList();
+            _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, studentGradesResponse.Count, nameof(CourseGradeResponseModel)));
+
+            return studentGradesResponse;
         }
     }
 }
