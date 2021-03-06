@@ -23,12 +23,14 @@ namespace GradeR
             AppConfiguration.AddDependencies(services, _configuration);
             AppConfiguration.AddMvcCore(services);
             AppConfiguration.AddMediatr(services);
+            AppConfiguration.AddCors(services);
             AppConfiguration.AddOdata(services);
         }
 
         public void Configure(IApplicationBuilder app)
         {
             AppConfiguration.UseHttpsRedirection(app);
+            AppConfiguration.UseCors(app);
             AppConfiguration.UseRouting(app);
             AppConfiguration.UseHealthCheck(app);
 #pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.

@@ -31,6 +31,11 @@ namespace GradeR.Configurations
             services.AddMediatR(typeof(DependencyResolver).Assembly);
         }
 
+        public static void AddCors(IServiceCollection services)
+        {
+            services.AddCors();
+        }
+
         public static void AddOdata(IServiceCollection services)
         {
             services.AddOData();
@@ -39,6 +44,17 @@ namespace GradeR.Configurations
         public static void UseHttpsRedirection(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
+        }
+
+        public static void UseCors(IApplicationBuilder app)
+        {
+            // TODO: Fix this if we have a domain
+            app.UseCors(policy =>
+                policy
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true)
+                    .AllowCredentials());
         }
 
         public static void UseRouting(IApplicationBuilder app)
