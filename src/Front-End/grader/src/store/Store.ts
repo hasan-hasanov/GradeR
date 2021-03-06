@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import CoursesModule from "./modules/CoursesModule";
+import StudentsModule from "./modules/StudentsModule"
 
 export default createStore({
     state: {
@@ -51,5 +52,6 @@ export default createStore({
     },
     modules: {
         coursesModule: CoursesModule,
+        studentsModule: StudentsModule
     }
 });

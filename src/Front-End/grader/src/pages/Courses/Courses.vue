@@ -1,5 +1,5 @@
 <template>
-  <h2 class="center-header mt-4 mb-4">Courses</h2>
+  <center-header Text="Courses" />
 
   <div class="container">
     <table class="table">
@@ -34,11 +34,15 @@
 <script lang="ts">
 import { defineComponent, onMounted, computed } from "vue";
 import { getModule } from "vuex-module-decorators";
+import CenterHeader from "../../components/Common/CenterHeader/CenterHeader.vue";
 import CoursesModule from "../../store/modules/CoursesModule";
 import Store from "../../store/Store";
 
 export default defineComponent({
   name: "Courses",
+  components: {
+    "center-header": CenterHeader,
+  },
   setup() {
     const coursesModule = getModule(CoursesModule, Store);
     const courses = computed(() => coursesModule.courses);
@@ -53,7 +57,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.center-header {
-  text-align: center;
-}
 </style>
