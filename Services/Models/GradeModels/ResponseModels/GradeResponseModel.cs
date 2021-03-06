@@ -10,7 +10,7 @@ namespace Services.Models.GradeModels.ResponseModels
             Grade = grade.StudentGrade;
             Student = $"{grade.Student.FirstName} {grade.Student.LastName}";
             Teacher = $"{grade.Teacher.FirstName} {grade.Teacher.LastName}";
-            Course = grade.Course.Name;
+            Course = new GradeCourseResponseModel(grade.Course);
         }
 
         public long Id { get; set; }
@@ -21,6 +21,6 @@ namespace Services.Models.GradeModels.ResponseModels
 
         public string Teacher { get; set; }
 
-        public string Course { get; set; }
+        public GradeCourseResponseModel Course { get; set; }
     }
 }
