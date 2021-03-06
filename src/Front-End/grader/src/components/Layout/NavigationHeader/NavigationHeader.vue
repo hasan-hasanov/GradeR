@@ -79,7 +79,7 @@ export default defineComponent({
 
 <style>
 .navigation-top-background-image {
-  background-image: url(/img/header-icon.png);
+  background-image: url(/img/header-icon.svg);
   background-color: #009ce6;
   min-height: 200px;
   background-size: 180px, 180px;
