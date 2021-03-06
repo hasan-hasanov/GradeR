@@ -1,11 +1,11 @@
 ﻿using Core.Entities;
 using System;
 
-namespace Services.Models.ResponseModels
+namespace Services.Models.CourseModels.ResponseModels
 {
-    public class TeacherResponseModel
+    public class CourseTeacherResponseModel
     {
-        public TeacherResponseModel(Teacher teacher)
+        public CourseTeacherResponseModel(Teacher teacher)
         {
             Id = teacher.Id;
             FirstName = teacher.FirstName;

@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Services.Models.ResponseModels
+namespace Services.Models.StudentModels.ResponseModels
 {
     public class StudentGradeResponseModel
     {

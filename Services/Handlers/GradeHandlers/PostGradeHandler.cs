@@ -9,7 +9,7 @@ using DAL.Queries.GetStudentById;
 using DAL.Queries.GetTeacherById;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
+using Services.Models.GradeModels.RequestModels;
 using System.Threading;
 using System.Threading.Tasks;
 

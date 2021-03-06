@@ -5,7 +5,7 @@ using Core.Queries;
 using Core.Validation;
 using DAL.Queries.GetStudentById;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
+using Services.Models.StudentModels.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

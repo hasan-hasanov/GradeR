@@ -14,7 +14,10 @@ namespace DAL.Configs
             builder.Property(x => x.StartDate).IsRequired();
             builder.Property(x => x.EndDate).IsRequired();
 
-            builder.HasMany(x => x.StudentTeacherCourses)
+            builder.HasMany(x => x.Students)
+                .WithOne(x => x.Course);
+
+            builder.HasMany(x => x.Teachers)
                 .WithOne(x => x.Course);
         }
     }

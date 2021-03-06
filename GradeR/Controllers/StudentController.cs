@@ -4,8 +4,8 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
-using Services.Models.ResponseModels;
+using Services.Models.StudentModels.RequestModels;
+using Services.Models.StudentModels.ResponseModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

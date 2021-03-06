@@ -5,7 +5,7 @@ using Core.Queries;
 using Core.Validation;
 using DAL.Queries.GetCourseById;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
+using Services.Models.CourseModels.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Services.Validations
 {
-    public class GetCourseGradeByIdRequestModelValidator : IValidation<GetCourseGradeByIdRequestModel>
+    public class GetCourseGradeByIdRequestModelValidator : IValidation<GetCourseByIdRequestModel>
     {
         private readonly ILogger _logger;
         private readonly IQueryHandler<GetCourseByIdQuery, Course> _getCourseByIdQuery;
@@ -27,7 +27,7 @@ namespace Services.Validations
             _getCourseByIdQuery = getCourseByIdQuery;
         }
 
-        public async Task Validate(GetCourseGradeByIdRequestModel model, CancellationToken cancellationToken = default)
+        public async Task Validate(GetCourseByIdRequestModel model, CancellationToken cancellationToken = default)
         {
             List<string> errorMessages = new List<string>();
 
@@ -45,7 +45,7 @@ namespace Services.Validations
             if (errorMessages.Any())
             {
                 string message = string.Join(Environment.NewLine, errorMessages);
-                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(GetCourseGradeByIdRequestModel), message));
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(GetCourseByIdRequestModel), message));
                 throw new NotFoundException(message);
             }
         }

@@ -24,11 +24,10 @@ namespace DAL.Queries.GetAllCourses
         {
             _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(Course)));
             List<Course> courses = await _context.Courses
-                .Include(g => g.Grades)
-                .ThenInclude(s => s.Student)
-                .Include(g => g.Grades)
-                .ThenInclude(t => t.Teacher)
-                .ThenInclude(t => t.Rank)
+                .Include(s => s.Students)
+                .Include(t => t.Teachers)
+                .ThenInclude(r => r.Teacher)
+                .ThenInclude(r => r.Rank)
                 .ToListAsync(cancellationToken);
             _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, courses.Count, nameof(Course)));
 

@@ -4,7 +4,7 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
+using Services.Models.GradeModels.RequestModels;
 using System.Threading.Tasks;
 
 namespace GradeR.Controllers

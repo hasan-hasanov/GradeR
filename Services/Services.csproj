@@ -30,4 +30,8 @@
     <AdditionalFiles Include="..\StyleCop\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\GradeModels\ResponseModels\" />
+  </ItemGroup>
+
 </Project>

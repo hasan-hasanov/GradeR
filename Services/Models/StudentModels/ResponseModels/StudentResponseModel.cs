@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Services.Models.ResponseModels
+namespace Services.Models.StudentModels.ResponseModels
 {
     public class StudentResponseModel
     {
@@ -16,6 +16,7 @@ namespace Services.Models.ResponseModels
                 LastName = student.LastName;
                 BirthDate = student.BirthDate;
                 CourseGrades = student?.Grades?.Select(g => new StudentGradeResponseModel(g))?.ToList();
+                Courses = student.Courses.Select(c => new StudentCourseResponseModel(c.Course)).ToList();
             }
         }
 
@@ -28,5 +29,7 @@ namespace Services.Models.ResponseModels
         public DateTime BirthDate { get; set; }
 
         public IList<StudentGradeResponseModel> CourseGrades { get; set; }
+
+        public IList<StudentCourseResponseModel> Courses { get; set; }
     }
 }

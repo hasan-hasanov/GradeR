@@ -5,8 +5,8 @@ using Core.Validation;
 using DAL.Queries.GetStudentById;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
-using Services.Models.ResponseModels;
+using Services.Models.StudentModels.RequestModels;
+using Services.Models.StudentModels.ResponseModels;
 using System.Threading;
 using System.Threading.Tasks;
 

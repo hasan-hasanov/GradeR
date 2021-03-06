@@ -4,8 +4,8 @@ using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
-using Services.Models.ResponseModels;
+using Services.Models.CourseModels.RequestModels;
+using Services.Models.CourseModels.ResponseModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,22 +26,22 @@ namespace GradeR.Controllers
         [HttpGet]
         [EnableQuery]
         [ODataRoute]
-        public async Task<IList<CourseGradeResponseModel>> Get()
+        public async Task<IList<CourseResponseModel>> Get()
         {
             _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(CourseController), nameof(Get)));
 
-            IList<CourseGradeResponseModel> courseGradeResponse = await _mediator.Send(new GetCourseGradesRequestModel());
+            IList<CourseResponseModel> courseGradeResponse = await _mediator.Send(new GetCourseRequestModel());
             return courseGradeResponse;
         }
 
         [HttpGet]
         [EnableQuery]
         [ODataRoute("({id})")]
-        public async Task<CourseGradeResponseModel> GetCourse([FromODataUri] long id)
+        public async Task<CourseResponseModel> GetCourse([FromODataUri] long id)
         {
             _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(CourseController), nameof(GetCourse)));
 
-            CourseGradeResponseModel courseGradeResponse = await _mediator.Send(new GetCourseGradeByIdRequestModel(id));
+            CourseResponseModel courseGradeResponse = await _mediator.Send(new GetCourseByIdRequestModel(id));
             return courseGradeResponse;
         }
     }

@@ -24,9 +24,11 @@ namespace DAL
 
         public DbSet<Student> Students { get; set; }
 
-        public DbSet<StudentTeacherCourse> StudentTeacherCourses { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
+
+        public DbSet<StudentCourse> TeacherCourses { get; set; }
 
         public GradeRContext CreateDbContext(string[] args)
         {
@@ -43,7 +45,7 @@ namespace DAL
             modelBuilder.ApplyConfiguration(new GradeConfig());
             modelBuilder.ApplyConfiguration(new RankConfig());
             modelBuilder.ApplyConfiguration(new StudentConfig());
-            modelBuilder.ApplyConfiguration(new StudentTeacherCourseConfig());
+            modelBuilder.ApplyConfiguration(new StudentCourseConfig());
             modelBuilder.ApplyConfiguration(new TeacherConfig());
         }
     }

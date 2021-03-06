@@ -106,14 +106,15 @@ namespace DAL.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Core.Entities.StudentTeacherCourse", b =>
+            modelBuilder.Entity("Core.Entities.StudentCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,18 +127,13 @@ namespace DAL.Migrations
                     b.Property<long?>("StudentId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TeacherId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
 
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("StudentTeacherCourses");
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("Core.Entities.Teacher", b =>
@@ -157,7 +153,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<int?>("RankId")
                         .HasColumnType("int");
@@ -169,10 +166,32 @@ namespace DAL.Migrations
                     b.ToTable("Teachers");
                 });
 
+            modelBuilder.Entity("Core.Entities.TeacherCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CourseId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TeacherId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherCourse");
+                });
+
             modelBuilder.Entity("Core.Entities.Grade", b =>
                 {
                     b.HasOne("Core.Entities.Course", "Course")
-                        .WithMany("Grade")
+                        .WithMany("Grades")
                         .HasForeignKey("CourseId");
 
                     b.HasOne("Core.Entities.Student", "Student")
@@ -184,19 +203,15 @@ namespace DAL.Migrations
                         .HasForeignKey("TeacherId");
                 });
 
-            modelBuilder.Entity("Core.Entities.StudentTeacherCourse", b =>
+            modelBuilder.Entity("Core.Entities.StudentCourse", b =>
                 {
                     b.HasOne("Core.Entities.Course", "Course")
-                        .WithMany("StudentTeacherCourses")
+                        .WithMany("Students")
                         .HasForeignKey("CourseId");
 
                     b.HasOne("Core.Entities.Student", "Student")
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
-
-                    b.HasOne("Core.Entities.Teacher", "Teacher")
-                        .WithMany("Courses")
-                        .HasForeignKey("TeacherId");
                 });
 
             modelBuilder.Entity("Core.Entities.Teacher", b =>
@@ -204,6 +219,17 @@ namespace DAL.Migrations
                     b.HasOne("Core.Entities.Rank", "Rank")
                         .WithMany()
                         .HasForeignKey("RankId");
+                });
+
+            modelBuilder.Entity("Core.Entities.TeacherCourse", b =>
+                {
+                    b.HasOne("Core.Entities.Course", "Course")
+                        .WithMany("Teachers")
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("Core.Entities.Teacher", "Teacher")
+                        .WithMany("Courses")
+                        .HasForeignKey("TeacherId");
                 });
 #pragma warning restore 612, 618
         }

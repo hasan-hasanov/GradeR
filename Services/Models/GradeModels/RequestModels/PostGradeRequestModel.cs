@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Services.Models.RequestModels
+namespace Services.Models.GradeModels.RequestModels
 {
     public class PostGradeRequestModel : IRequest
     {

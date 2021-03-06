@@ -4,8 +4,8 @@ using Core.Queries;
 using DAL.Queries.GetAllCourses;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Services.Models.RequestModels;
-using Services.Models.ResponseModels;
+using Services.Models.CourseModels.RequestModels;
+using Services.Models.CourseModels.ResponseModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Services.Handlers.CourseHandlers
 {
-    public class GetCourseGradesHandler : IRequestHandler<GetCourseGradesRequestModel, IList<CourseGradeResponseModel>>
+    public class GetCourseGradesHandler : IRequestHandler<GetCourseRequestModel, IList<CourseResponseModel>>
     {
         private readonly ILogger _logger;
         private readonly IQueryHandler<GetAllCoursesQuery, IList<Course>> _getAllCoursesQueryHandler;
@@ -26,13 +26,13 @@ namespace Services.Handlers.CourseHandlers
             _getAllCoursesQueryHandler = getAllCoursesQueryHandler;
         }
 
-        public async Task<IList<CourseGradeResponseModel>> Handle(GetCourseGradesRequestModel request, CancellationToken cancellationToken)
+        public async Task<IList<CourseResponseModel>> Handle(GetCourseRequestModel request, CancellationToken cancellationToken)
         {
             IList<Course> studentGrades = await _getAllCoursesQueryHandler.HandleAsync(new GetAllCoursesQuery(), cancellationToken);
 
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(IList<CourseGradeResponseModel>)));
-            IList<CourseGradeResponseModel> studentGradesResponse = studentGrades.Select(s => new CourseGradeResponseModel(s)).ToList();
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(IList<CourseGradeResponseModel>)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(IList<CourseResponseModel>)));
+            IList<CourseResponseModel> studentGradesResponse = studentGrades.Select(s => new CourseResponseModel(s)).ToList();
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(IList<CourseResponseModel>)));
 
             return studentGradesResponse;
         }

@@ -43,7 +43,7 @@ namespace DAL.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(maxLength: 200, nullable: false),
-                    LastName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(maxLength: 200, nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -58,7 +58,7 @@ namespace DAL.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(maxLength: 200, nullable: false),
-                    LastName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(maxLength: 200, nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false),
                     RankId = table.Column<int>(nullable: true)
                 },
@@ -69,6 +69,32 @@ namespace DAL.Migrations
                         name: "FK_Teachers_Ranks_RankId",
                         column: x => x.RankId,
                         principalTable: "Ranks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentCourse",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<long>(nullable: true),
+                    CourseId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentCourse", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentCourse_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentCourse_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -108,32 +134,25 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentTeacherCourses",
+                name: "TeacherCourse",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StudentId = table.Column<long>(nullable: true),
-                    CourseId = table.Column<long>(nullable: true),
-                    TeacherId = table.Column<long>(nullable: true)
+                    TeacherId = table.Column<long>(nullable: true),
+                    CourseId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentTeacherCourses", x => x.Id);
+                    table.PrimaryKey("PK_TeacherCourse", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentTeacherCourses_Courses_CourseId",
+                        name: "FK_TeacherCourse_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_StudentTeacherCourses_Students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StudentTeacherCourses_Teachers_TeacherId",
+                        name: "FK_TeacherCourse_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
@@ -156,18 +175,23 @@ namespace DAL.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTeacherCourses_CourseId",
-                table: "StudentTeacherCourses",
+                name: "IX_StudentCourse_CourseId",
+                table: "StudentCourse",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTeacherCourses_StudentId",
-                table: "StudentTeacherCourses",
+                name: "IX_StudentCourse_StudentId",
+                table: "StudentCourse",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTeacherCourses_TeacherId",
-                table: "StudentTeacherCourses",
+                name: "IX_TeacherCourse_CourseId",
+                table: "TeacherCourse",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherCourse_TeacherId",
+                table: "TeacherCourse",
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
@@ -182,13 +206,16 @@ namespace DAL.Migrations
                 name: "Grades");
 
             migrationBuilder.DropTable(
-                name: "StudentTeacherCourses");
+                name: "StudentCourse");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "TeacherCourse");
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Services.Models.ResponseModels
+namespace Services.Models.CourseModels.ResponseModels
 {
-    public class CourseGradeResponseModel
+    public class CourseResponseModel
     {
-        public CourseGradeResponseModel(Course course)
+        public CourseResponseModel(Course course)
         {
             if (course != null)
             {
@@ -15,7 +15,7 @@ namespace Services.Models.ResponseModels
                 Name = course.Name;
                 StartDate = course.StartDate;
                 EndDate = course.EndDate;
-                Grades = course?.Grades.Select(g => new GradeResponseModel(g)).ToList();
+                Teachers = course.Teachers.Select(t => new CourseTeacherResponseModel(t.Teacher)).ToList();
             }
         }
 
@@ -27,6 +27,6 @@ namespace Services.Models.ResponseModels
 
         public DateTime EndDate { get; set; }
 
-        public IList<GradeResponseModel> Grades { get; set; }
+        public IList<CourseTeacherResponseModel> Teachers { get; set; }
     }
 }

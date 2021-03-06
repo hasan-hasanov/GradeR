@@ -24,8 +24,7 @@ namespace DAL.Queries.GetStudentById
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Student), query.Id));
             Student student = await _context.Students
                 .Include(g => g.Grades)
-                .ThenInclude(t => t.Teacher)
-                .Include(g => g.Grades)
+                .Include(c => c.Courses)
                 .ThenInclude(c => c.Course)
                 .FirstOrDefaultAsync(s => s.Id == query.Id, cancellationToken);
 

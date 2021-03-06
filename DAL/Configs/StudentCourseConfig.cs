@@ -4,19 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DAL.Configs
 {
-    public class StudentTeacherCourseConfig : IEntityTypeConfiguration<StudentTeacherCourse>
+    public class StudentCourseConfig : IEntityTypeConfiguration<StudentCourse>
     {
-        public void Configure(EntityTypeBuilder<StudentTeacherCourse> builder)
+        public void Configure(EntityTypeBuilder<StudentCourse> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Course)
-                .WithMany(x => x.StudentTeacherCourses);
+                .WithMany(x => x.Students);
 
             builder.HasOne(x => x.Student)
-                .WithMany(x => x.Courses);
-
-            builder.HasOne(x => x.Teacher)
                 .WithMany(x => x.Courses);
         }
     }

@@ -15,6 +15,6 @@ namespace Core.Entities
 
         public ICollection<Grade> Grades { get; set; }
 
-        public ICollection<StudentTeacherCourse> Courses { get; set; }
+        public ICollection<StudentCourse> Courses { get; set; }
     }
 }

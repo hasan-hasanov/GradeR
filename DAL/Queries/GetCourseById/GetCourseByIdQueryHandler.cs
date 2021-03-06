@@ -23,11 +23,10 @@ namespace DAL.Queries.GetCourseById
         {
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Course), query.Id));
             Course course = await _context.Courses
-                .Include(g => g.Grades)
-                .ThenInclude(s => s.Student)
-                .Include(g => g.Grades)
-                .ThenInclude(t => t.Teacher)
-                .ThenInclude(t => t.Rank)
+                .Include(s => s.Students)
+                .Include(t => t.Teachers)
+                .ThenInclude(r => r.Teacher)
+                .ThenInclude(r => r.Rank)
                 .FirstOrDefaultAsync(s => s.Id == query.Id, cancellationToken);
 
             if (course == null)

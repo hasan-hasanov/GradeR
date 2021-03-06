@@ -15,8 +15,8 @@ namespace Core.Entities
 
         public Rank Rank { get; set; }
 
-        public ICollection<StudentTeacherCourse> Courses { get; set; }
-
         public ICollection<Grade> Grades { get; set; }
+
+        public ICollection<TeacherCourse> Courses { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Services.Models.ResponseModels;
+using Services.Models.StudentModels.ResponseModels;
 
-namespace Services.Models.RequestModels
+namespace Services.Models.StudentModels.RequestModels
 {
     public class GetStudentByIdRequestModel : IRequest<StudentResponseModel>
     {

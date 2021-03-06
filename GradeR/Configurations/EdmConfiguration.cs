@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.OData.Builder;
 using Microsoft.OData.Edm;
-using Services.Models.ResponseModels;
+using Services.Models.CourseModels.ResponseModels;
+using Services.Models.StudentModels.ResponseModels;
 
 namespace GradeR.Configurations
 {
@@ -18,9 +19,8 @@ namespace GradeR.Configurations
 
         private static ODataConventionModelBuilder AddCourse(this ODataConventionModelBuilder builder)
         {
-            builder.EntitySet<CourseGradeResponseModel>("Course");
-            builder.ComplexType<GradeResponseModel>();
-            builder.ComplexType<TeacherResponseModel>();
+            builder.EntitySet<CourseResponseModel>("Course");
+            builder.ComplexType<CourseTeacherResponseModel>();
 
             return builder;
         }
@@ -29,14 +29,13 @@ namespace GradeR.Configurations
         {
             builder.EntitySet<StudentResponseModel>("Student");
             builder.ComplexType<StudentGradeResponseModel>();
+            builder.ComplexType<StudentCourseResponseModel>();
 
             return builder;
         }
 
         private static ODataConventionModelBuilder AddGrade(this ODataConventionModelBuilder builder)
         {
-            builder.EntitySet<StudentResponseModel>("Grade");
-
             return builder;
         }
     }
