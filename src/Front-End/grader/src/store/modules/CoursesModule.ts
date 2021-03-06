@@ -13,7 +13,7 @@ export default class CoursesModule extends VuexModule {
 
         try {
             const response = await getCoursesAsync();
-            const courses = response.data;
+            const courses = response.data.value;
 
             this.context.commit(nameof<CoursesModule>("StoreCourses"), courses);
         }
