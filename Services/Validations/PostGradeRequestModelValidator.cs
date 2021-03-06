@@ -54,7 +54,7 @@ namespace Services.Validations
 
             if (errorMessages.Any())
             {
-                throw new BadRequestException(string.Join(Environment.NewLine, errorMessages));
+                throw new NotFoundException(string.Join(Environment.NewLine, errorMessages));
             }
         }
     }
