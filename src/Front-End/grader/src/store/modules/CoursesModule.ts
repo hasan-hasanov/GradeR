@@ -13,7 +13,17 @@ export default class CoursesModule extends VuexModule {
 
         try {
             const response = await getCoursesAsync();
-            const courses = response.data.value;
+            const courses = response.data.value.map((c: any) => {
+                const course: Course = {
+                    Id: c.Id,
+                    Name: c.Name,
+                    StartDate: c.StartDate,
+                    EndDate: c.EndDate,
+                    Teachers: c.Teachers.map((t: any) => `${t.FirstName} ${t.LastName}`).join(", ")
+                }
+
+                return course;
+            });
 
             this.context.commit(nameof<CoursesModule>("StoreCourses"), courses);
         }

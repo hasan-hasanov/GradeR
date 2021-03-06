@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import CoursesModule from "./modules/CoursesModule";
 import StudentsModule from "./modules/StudentsModule"
+import GradesModule from "./modules/GradesModule"
 
 export default createStore({
     state: {
@@ -52,6 +53,7 @@ export default createStore({
     },
     modules: {
         coursesModule: CoursesModule,
-        studentsModule: StudentsModule
+        studentsModule: StudentsModule,
+        gradesModule: GradesModule
     }
 });

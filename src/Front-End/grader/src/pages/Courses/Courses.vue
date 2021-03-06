@@ -18,13 +18,7 @@
           <td>{{ course.Name }}</td>
           <td>{{ course.StartDate.toString().split("T")[0] }}</td>
           <td>{{ course.EndDate.toString().split("T")[0] }}</td>
-          <td>
-            {{
-              course.Teachers.map((t) => `${t.FirstName} ${t.LastName}`).join(
-                ", "
-              )
-            }}
-          </td>
+          <td>{{ course.Teachers }}</td>
         </tr>
       </tbody>
     </table>
