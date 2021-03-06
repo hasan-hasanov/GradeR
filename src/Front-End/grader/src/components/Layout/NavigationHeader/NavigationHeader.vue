@@ -45,9 +45,6 @@
       <router-link to="/grades" class="navbar-brand">
         <a class="nav-link text-white" href="#">Grades</a>
       </router-link>
-      <router-link to="/evaluation" class="navbar-brand">
-        <a class="nav-link text-white" href="#">Evaluation</a>
-      </router-link>
     </div>
   </nav>
 </template>
