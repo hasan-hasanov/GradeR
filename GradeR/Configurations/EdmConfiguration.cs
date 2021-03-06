@@ -38,6 +38,7 @@ namespace GradeR.Configurations
         private static ODataConventionModelBuilder AddGrade(this ODataConventionModelBuilder builder)
         {
             builder.EntitySet<GradeResponseModel>("Grade");
+            builder.ComplexType<GradeCourseResponseModel>();
 
             return builder;
         }
