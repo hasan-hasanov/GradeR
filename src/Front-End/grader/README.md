@@ -1,4 +1,4 @@
-# otto
+# grader
 
 ## Project setup
 ```
