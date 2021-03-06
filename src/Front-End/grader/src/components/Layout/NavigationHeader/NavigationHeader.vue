@@ -14,35 +14,45 @@
   </teleport>
 
   <div class="navigation-top-background-image">
-    <div class="row no-right-margin ml-1 pr-5 pt-5 pl-5 pb-5">
-      <div></div>
-      <div class="ml-auto"></div>
-    </div>
   </div>
 
-  <nav
-    class="navbar navbar-expand-lg navbar-light justify-content-between"
-    style="background-color: #68aee0"
-  >
-    <router-link to="/" class="navbar-brand ml-2">
-      <svg
-        width="1em"
-        height="1em"
-        viewBox="0 0 16 16"
-        class="bi bi-house-fill"
-        fill="white"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
-        />
-        <path
-          fill-rule="evenodd"
-          d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
-        />
-      </svg>
-    </router-link>
+  <nav class="navbar navbar-expand-lg" style="background-color: #86da00">
+    <a class="navbar-brand" href="#">Grader</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link disabled"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            >Disabled</a
+          >
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -76,9 +86,12 @@ export default defineComponent({
 
 <style>
 .navigation-top-background-image {
-  background-image: url(/img/main-jumbotron-image.jpg);
+  background-image: url(/img/header-icon.png);
+  background-color: #009ce6;
+  min-height: 200px;
+  background-size: 180px, 180px;
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .navigation-grader-left-logo {
@@ -89,10 +102,16 @@ export default defineComponent({
   font-size: 3.5rem;
   font-weight: 300;
   line-height: 1.2;
-  color: #0099da;
+  color: #86da00;
 }
 
 .no-right-margin {
   margin-right: 0px !important;
+}
+
+.fit-header-to-div {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 </style>
