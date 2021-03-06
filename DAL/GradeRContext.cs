@@ -30,6 +30,7 @@ namespace DAL
 
         public GradeRContext CreateDbContext(string[] args)
         {
+            // TODO: Move this to proper location
             var optionsBuilder = new DbContextOptionsBuilder<GradeRContext>();
             optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=GradeR;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O");
 

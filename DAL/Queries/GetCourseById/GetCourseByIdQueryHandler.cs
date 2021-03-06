@@ -24,9 +24,9 @@ namespace DAL.Queries.GetCourseById
             _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Course), query.Id));
             Course course = await _context.Courses
                 .Include(g => g.Grades)
-                .ThenInclude(g => g.Student)
+                .ThenInclude(s => s.Student)
                 .Include(g => g.Grades)
-                .ThenInclude(s => s.Teacher)
+                .ThenInclude(t => t.Teacher)
                 .FirstOrDefaultAsync(s => s.Id == query.Id, cancellationToken);
 
             if (course == null)

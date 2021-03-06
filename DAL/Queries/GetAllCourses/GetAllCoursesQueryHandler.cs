@@ -25,9 +25,9 @@ namespace DAL.Queries.GetAllCourses
             _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(Course)));
             List<Course> courses = await _context.Courses
                 .Include(g => g.Grades)
-                .ThenInclude(g => g.Student)
+                .ThenInclude(s => s.Student)
                 .Include(g => g.Grades)
-                .ThenInclude(s => s.Teacher)
+                .ThenInclude(t => t.Teacher)
                 .ToListAsync(cancellationToken);
             _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, courses.Count, nameof(Course)));
 
