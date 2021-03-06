@@ -5,6 +5,7 @@ using Core.Validation;
 using DAL;
 using DAL.Commands.EvaluateStudent;
 using DAL.Queries.GetAllCourses;
+using DAL.Queries.GetAllGrades;
 using DAL.Queries.GetAllStudents;
 using DAL.Queries.GetCourseById;
 using DAL.Queries.GetStudentById;
@@ -35,6 +36,7 @@ namespace Services.DIConfiguration
 
             // Queries
             serviceCollection.AddScoped<IQueryHandler<GetAllCoursesQuery, IList<Course>>, GetAllCoursesQueryHandler>();
+            serviceCollection.AddScoped<IQueryHandler<GetAllGradesQuery, IList<Grade>>, GetAllGradesQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetAllStudentsQuery, IList<Student>>, GetAllStudentsQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetCourseByIdQuery, Course>, GetCourseByIdQueryHandler>();
             serviceCollection.AddScoped<IQueryHandler<GetStudentByIdQuery, Student>, GetStudentByIdQueryHandler>();

@@ -73,6 +73,16 @@ namespace Services.Validations
 
             _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.CourseId)));
 
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(model.Grade)));
+            if (model.Grade < 0 || model.Grade > 100)
+            {
+                string message = $"{nameof(model.Grade)} must be between 0 and 100";
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(model.Grade), message));
+                errorMessages.Add(message);
+            }
+
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.Grade)));
+
             if (errorMessages.Any())
             {
                 string message = string.Join(Environment.NewLine, errorMessages);

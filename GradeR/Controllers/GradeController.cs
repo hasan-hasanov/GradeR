@@ -5,6 +5,8 @@ using Microsoft.AspNet.OData.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Models.GradeModels.RequestModels;
+using Services.Models.GradeModels.ResponseModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GradeR.Controllers
@@ -19,6 +21,17 @@ namespace GradeR.Controllers
         {
             _logger = logger;
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute]
+        public async Task<IList<GradeResponseModel>> Get()
+        {
+            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(GradeController), nameof(Get)));
+
+            IList<GradeResponseModel> gradeResponse = await _mediator.Send(new GetAllGradesRequestModel());
+            return gradeResponse;
         }
 
         [HttpPost]
