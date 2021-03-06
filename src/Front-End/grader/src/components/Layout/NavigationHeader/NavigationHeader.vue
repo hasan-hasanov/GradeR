@@ -13,11 +13,17 @@
     />
   </teleport>
 
-  <div class="navigation-top-background-image">
-  </div>
+  <div class="navigation-top-background-image"></div>
 
-  <nav class="navbar navbar-expand-lg" style="background-color: #86da00">
-    <a class="navbar-brand" href="#">Grader</a>
+  <nav class="navbar navbar-expand-lg" style="background-color: #f3684e">
+    <router-link to="/" class="navbar-brand">
+      <a
+        class="nav-link text-white text-uppercase"
+        style="font-weight: bold"
+        href="#"
+        >Grader</a
+      >
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -30,28 +36,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
-        </li>
-      </ul>
+      <router-link to="/courses" class="navbar-brand">
+        <a class="nav-link text-white">Courses</a>
+      </router-link>
+      <router-link to="/students" class="navbar-brand">
+        <a class="nav-link text-white" href="#">Students</a>
+      </router-link>
+      <router-link to="/grades" class="navbar-brand">
+        <a class="nav-link text-white" href="#">Grades</a>
+      </router-link>
+      <router-link to="/evaluation" class="navbar-brand">
+        <a class="nav-link text-white" href="#">Evaluation</a>
+      </router-link>
     </div>
   </nav>
 </template>
@@ -102,7 +98,7 @@ export default defineComponent({
   font-size: 3.5rem;
   font-weight: 300;
   line-height: 1.2;
-  color: #86da00;
+  color: #6b95bc;
 }
 
 .no-right-margin {
