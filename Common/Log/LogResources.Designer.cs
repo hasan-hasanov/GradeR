@@ -61,6 +61,33 @@ namespace Common.Log {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assembled [{0}].
+        /// </summary>
+        public static string AssembledResponse {
+            get {
+                return ResourceManager.GetString("AssembledResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembling [{0}].
+        /// </summary>
+        public static string AssemblingResponse {
+            get {
+                return ResourceManager.GetString("AssemblingResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{0}] with action [{1}] found.
+        /// </summary>
+        public static string ControllerFound {
+            get {
+                return ResourceManager.GetString("ControllerFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [{0}] with Id {1} not found.
         /// </summary>
         public static string GetItemNotFound {
@@ -120,6 +147,33 @@ namespace Common.Log {
         public static string ListingItems {
             get {
                 return ResourceManager.GetString("ListingItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{0}] is valid.
+        /// </summary>
+        public static string ValidatedItem {
+            get {
+                return ResourceManager.GetString("ValidatedItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validating [{0}].
+        /// </summary>
+        public static string ValidatingItem {
+            get {
+                return ResourceManager.GetString("ValidatingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation of [{0}] failed with message [{1}].
+        /// </summary>
+        public static string ValidationFailed {
+            get {
+                return ResourceManager.GetString("ValidationFailed", resourceCulture);
             }
         }
     }

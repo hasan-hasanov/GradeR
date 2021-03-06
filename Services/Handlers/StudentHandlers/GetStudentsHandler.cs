@@ -28,10 +28,11 @@ namespace Services.Handlers.StudentHandlers
 
         public async Task<IList<StudentResponseModel>> Handle(GetStudentsRequestModel request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(StudentResponseModel)));
             IList<Student> students = await _getAllStudentsQueryHandler.HandleAsync(new GetAllStudentsQuery(), cancellationToken);
+
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(IList<StudentResponseModel>)));
             IList<StudentResponseModel> studentResponse = students.Select(s => new StudentResponseModel(s)).ToList();
-            _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, studentResponse.Count, nameof(StudentResponseModel)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(IList<StudentResponseModel>)));
 
             return studentResponse;
         }

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AssembledResponse" xml:space="preserve">
+    <value>Assembled [{0}]</value>
+  </data>
+  <data name="AssemblingResponse" xml:space="preserve">
+    <value>Assembling [{0}]</value>
+  </data>
+  <data name="ControllerFound" xml:space="preserve">
+    <value>[{0}] with action [{1}] found</value>
+  </data>
   <data name="GetItemNotFound" xml:space="preserve">
     <value>[{0}] with Id {1} not found</value>
   </data>
@@ -137,5 +146,14 @@
   </data>
   <data name="ListingItems" xml:space="preserve">
     <value>Listing [{0}s]</value>
+  </data>
+  <data name="ValidatedItem" xml:space="preserve">
+    <value>[{0}] is valid</value>
+  </data>
+  <data name="ValidatingItem" xml:space="preserve">
+    <value>Validating [{0}]</value>
+  </data>
+  <data name="ValidationFailed" xml:space="preserve">
+    <value>Validation of [{0}] failed with message [{1}]</value>
   </data>
 </root>

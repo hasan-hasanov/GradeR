@@ -1,10 +1,12 @@
 ﻿using Common.Exceptions;
+using Common.Log;
 using Core.Entities;
 using Core.Queries;
 using Core.Validation;
 using DAL.Queries.GetCourseById;
 using DAL.Queries.GetStudentById;
 using DAL.Queries.GetTeacherById;
+using Microsoft.Extensions.Logging;
 using Services.Models.RequestModels;
 using System;
 using System.Collections.Generic;
@@ -16,15 +18,18 @@ namespace Services.Validations
 {
     public class PostGradeRequestModelValidator : IValidation<PostGradeRequestModel>
     {
+        private readonly ILogger _logger;
         private readonly IQueryHandler<GetStudentByIdQuery, Student> _getStudentByIdQueryHandler;
         private readonly IQueryHandler<GetTeacherByIdQuery, Teacher> _getTeacherByIdQueryHandler;
         private readonly IQueryHandler<GetCourseByIdQuery, Course> _getCourseByIdQueryHandler;
 
         public PostGradeRequestModelValidator(
+            ILogger<PostGradeRequestModelValidator> logger,
             IQueryHandler<GetStudentByIdQuery, Student> getStudentByIdQueryHandler,
             IQueryHandler<GetTeacherByIdQuery, Teacher> getTeacherByIdQueryHandler,
             IQueryHandler<GetCourseByIdQuery, Course> getCourseByIdQueryHandler)
         {
+            _logger = logger;
             _getStudentByIdQueryHandler = getStudentByIdQueryHandler;
             _getTeacherByIdQueryHandler = getTeacherByIdQueryHandler;
             _getCourseByIdQueryHandler = getCourseByIdQueryHandler;
@@ -34,27 +39,44 @@ namespace Services.Validations
         {
             List<string> errorMessages = new List<string>();
 
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(model.StudentId)));
             Student student = await _getStudentByIdQueryHandler.HandleAsync(new GetStudentByIdQuery(model.StudentId), cancellationToken);
             if (student == null)
             {
-                errorMessages.Add($"{nameof(Student)} with id {model.StudentId} not found");
+                string message = $"{nameof(Student)} with id {model.StudentId} not found";
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(model.StudentId), message));
+                errorMessages.Add(message);
             }
 
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.StudentId)));
+
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(model.TeacherId)));
             Teacher teacher = await _getTeacherByIdQueryHandler.HandleAsync(new GetTeacherByIdQuery(model.TeacherId), cancellationToken);
             if (teacher == null)
             {
-                errorMessages.Add($"{nameof(Teacher)} with id {model.TeacherId} not found");
+                string message = $"{nameof(Teacher)} with id {model.TeacherId} not found";
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(model.TeacherId), message));
+                errorMessages.Add(message);
             }
 
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.TeacherId)));
+
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(model.CourseId)));
             Course course = await _getCourseByIdQueryHandler.HandleAsync(new GetCourseByIdQuery(model.CourseId), cancellationToken);
             if (course == null)
             {
-                errorMessages.Add($"{nameof(Course)} with id {model.CourseId} not found");
+                string message = $"{nameof(Course)} with id {model.CourseId} not found";
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(model.CourseId), message));
+                errorMessages.Add(message);
             }
+
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.CourseId)));
 
             if (errorMessages.Any())
             {
-                throw new NotFoundException(string.Join(Environment.NewLine, errorMessages));
+                string message = string.Join(Environment.NewLine, errorMessages);
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(GetStudentByIdRequestModel), message));
+                throw new NotFoundException(message);
             }
         }
     }

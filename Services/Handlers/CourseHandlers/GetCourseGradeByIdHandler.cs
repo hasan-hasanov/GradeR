@@ -30,12 +30,15 @@ namespace Services.Handlers.CourseHandlers
 
         public async Task<CourseGradeResponseModel> Handle(GetCourseGradeByIdRequestModel request, CancellationToken cancellationToken)
         {
-            await _validator.Validate(request);
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(GetCourseGradeByIdRequestModel)));
+            await _validator.Validate(request, cancellationToken);
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(GetCourseGradeByIdRequestModel)));
 
-            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(CourseGradeResponseModel), request.Id));
             Course course = await _getCourseByIdQuery.HandleAsync(new GetCourseByIdQuery(request.Id), cancellationToken);
+
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(CourseGradeResponseModel)));
             CourseGradeResponseModel courseResponse = new CourseGradeResponseModel(course);
-            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GotItem, nameof(CourseGradeResponseModel)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(CourseGradeResponseModel)));
 
             return courseResponse;
         }

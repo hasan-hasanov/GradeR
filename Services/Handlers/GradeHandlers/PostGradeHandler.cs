@@ -1,4 +1,5 @@
-﻿using Core.Commands;
+﻿using Common.Log;
+using Core.Commands;
 using Core.Entities;
 using Core.Queries;
 using Core.Validation;
@@ -41,7 +42,9 @@ namespace Services.Handlers.GradeHandlers
 
         protected override async Task Handle(PostGradeRequestModel request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(PostGradeRequestModel)));
             await _validator.Validate(request);
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(PostGradeRequestModel)));
 
             Student student = await _getStudentByIdQueryHandler.HandleAsync(new GetStudentByIdQuery(request.StudentId), cancellationToken);
             Teacher teacher = await _getTeacherByIdQueryHandler.HandleAsync(new GetTeacherByIdQuery(request.TeacherId), cancellationToken);
