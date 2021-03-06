@@ -27,6 +27,7 @@ namespace DAL.Queries.GetCourseById
                 .ThenInclude(s => s.Student)
                 .Include(g => g.Grades)
                 .ThenInclude(t => t.Teacher)
+                .ThenInclude(t => t.Rank)
                 .FirstOrDefaultAsync(s => s.Id == query.Id, cancellationToken);
 
             if (course == null)

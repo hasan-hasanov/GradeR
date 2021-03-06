@@ -28,6 +28,7 @@ namespace DAL.Queries.GetAllCourses
                 .ThenInclude(s => s.Student)
                 .Include(g => g.Grades)
                 .ThenInclude(t => t.Teacher)
+                .ThenInclude(t => t.Rank)
                 .ToListAsync(cancellationToken);
             _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, courses.Count, nameof(Course)));
 
