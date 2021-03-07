@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  grader:
+    image: hasanhasanov/grader
+    build:
+      context: .
+      dockerfile: src/Api/Dockerfile
+    ports:
+      - "8080:80"
