@@ -154,5 +154,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Hasan Hasanov - [@hmhasanov](https://twitter.com/hmhasanov)
-Blog - https://hasan-hasanov.com/
+* Hasan Hasanov - [@hmhasanov](https://twitter.com/hmhasanov)
+* Blog - https://hasan-hasanov.com/
