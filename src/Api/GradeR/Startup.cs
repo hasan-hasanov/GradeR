@@ -1,3 +1,4 @@
+using DAL;
 using GradeR.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -27,8 +28,9 @@ namespace GradeR
             AppConfiguration.AddOdata(services);
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, GradeRContext context)
         {
+            AppConfiguration.UseApplyMigrations(context);
             AppConfiguration.UseHttpsRedirection(app);
             AppConfiguration.UseCors(app);
             AppConfiguration.UseRouting(app);

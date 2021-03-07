@@ -34,7 +34,7 @@ namespace DAL
         {
             // TODO: Move this to proper location
             var optionsBuilder = new DbContextOptionsBuilder<GradeRContext>();
-            optionsBuilder.UseSqlServer(@"Data Source=db;Initial Catalog=GradeR;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O");
+            optionsBuilder.UseSqlServer(@"Server=db;Database=GradeR;Trusted_Connection=False;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O;MultipleActiveResultSets=true");
 
             return new GradeRContext(optionsBuilder.Options);
         }

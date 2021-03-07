@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using DAL;
+using MediatR;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Services.DIConfiguration;
@@ -44,6 +46,11 @@ namespace GradeR.Configurations
         public static void UseHttpsRedirection(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
+        }
+
+        public static void UseApplyMigrations(GradeRContext context)
+        {
+            context.Database.Migrate();
         }
 
         public static void UseCors(IApplicationBuilder app)

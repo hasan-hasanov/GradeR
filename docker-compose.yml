@@ -2,10 +2,9 @@ version: '3.4'
 
 services:
   db:
-    container_name: mssql
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - "1433:1433"
+      - "10433:1433"
     environment:
       SA_PASSWORD: lAKB8oJgz8oFSa43ENSY5dMOAxbg1O
       ACCEPT_EULA: "Y"
@@ -15,8 +14,8 @@ services:
       context: .
       dockerfile: src/Api/Dockerfile
     environment:
-      - "ConnectionStrings__GradeR=Data Source=db;Initial Catalog=GradeR;User Id=SA; Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O"
-      - "Logging__LogLevel__Default=Information"
+      - ConnectionStrings__GradeR=Server=db;Database=GradeR;Trusted_Connection=False;User Id=SA;Password=lAKB8oJgz8oFSa43ENSY5dMOAxbg1O;MultipleActiveResultSets=true
+      - Logging__LogLevel__Default=Information
     ports:
       - "8080:80"
     depends_on: 
