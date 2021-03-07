@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const client = axios.create({
-    baseURL: process.env.VUE_APP_ROOT_API,
+    baseURL: process.env.VUE_APP_API_URL,
 });
 
 client.interceptors.request.use(request => {
