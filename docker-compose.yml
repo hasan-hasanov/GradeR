@@ -10,6 +10,7 @@ services:
       ACCEPT_EULA: "Y"
   grader:
     image: hasanhasanov/grader
+    restart: unless-stopped
     build:
       context: .
       dockerfile: src/Api/Dockerfile
