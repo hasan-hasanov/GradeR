@@ -199,8 +199,6 @@ namespace DAL.Migrations
                 name: "IX_Teachers_RankId",
                 table: "Teachers",
                 column: "RankId");
-
-            migrationBuilder.Sql(File.ReadAllText(@$"{AppContext.BaseDirectory}Seed/Seed.sql"));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

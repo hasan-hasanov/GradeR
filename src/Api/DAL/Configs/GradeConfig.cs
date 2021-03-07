@@ -13,13 +13,16 @@ namespace DAL.Configs
             builder.Property(x => x.StudentGrade).IsRequired();
 
             builder.HasOne(x => x.Student)
-                .WithMany(x => x.Grades);
+                .WithMany(x => x.Grades)
+                .HasForeignKey(x => x.StudentId);
 
             builder.HasOne(x => x.Teacher)
-                .WithMany(x => x.Grades);
+                .WithMany(x => x.Grades)
+                .HasForeignKey(x => x.TeacherId);
 
             builder.HasOne(x => x.Course)
-                .WithMany(x => x.Grades);
+                .WithMany(x => x.Grades)
+                .HasForeignKey(x => x.CourseId);
         }
     }
 }

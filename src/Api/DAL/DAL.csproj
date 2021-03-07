@@ -35,13 +35,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Seed\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Seed\Seed.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

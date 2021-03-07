@@ -11,10 +11,12 @@ namespace DAL.Configs
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Course)
-                .WithMany(x => x.Students);
+                .WithMany(x => x.Students)
+                .HasForeignKey(x => x.CourseId);
 
             builder.HasOne(x => x.Student)
-                .WithMany(x => x.Courses);
+                .WithMany(x => x.Courses)
+                .HasForeignKey(x => x.StudentId);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using DAL.Configs;
+using DAL.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -47,6 +48,14 @@ namespace DAL
             modelBuilder.ApplyConfiguration(new StudentConfig());
             modelBuilder.ApplyConfiguration(new StudentCourseConfig());
             modelBuilder.ApplyConfiguration(new TeacherConfig());
+
+            modelBuilder.Entity<Rank>().HasData(new RankSeed().Ranks);
+            modelBuilder.Entity<Course>().HasData(new CourseSeed().Courses);
+            modelBuilder.Entity<Student>().HasData(new StudentSeed().Students);
+            modelBuilder.Entity<Teacher>().HasData(new TeacherSeed().Teachers);
+            modelBuilder.Entity<StudentCourse>().HasData(new StudentCourseSeed().StudentCourses);
+            modelBuilder.Entity<TeacherCourse>().HasData(new TeacherCourseSeed().TeacherCourses);
+            modelBuilder.Entity<Grade>().HasData(new GradeSeed().Grades);
         }
     }
 }

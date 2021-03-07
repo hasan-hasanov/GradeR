@@ -14,7 +14,9 @@ namespace DAL.Configs
             builder.Property(x => x.LastName).HasMaxLength(200).IsRequired();
             builder.Property(x => x.BirthDate).IsRequired();
 
-            builder.HasOne(x => x.Rank);
+            builder.HasOne(x => x.Rank)
+                .WithMany(t => t.Teachers)
+                .HasForeignKey(r => r.RankId);
 
             builder.HasMany(x => x.Courses)
                 .WithOne(x => x.Teacher);

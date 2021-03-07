@@ -13,6 +13,8 @@ namespace Core.Entities
 
         public DateTime BirthDate { get; set; }
 
+        public int RankId { get; set; }
+
         public Rank Rank { get; set; }
 
         public ICollection<Grade> Grades { get; set; }
