@@ -60,9 +60,24 @@ To get a local copy up and running follow these simple steps.
 
 Compatible with Docker version 17.09.0+. Ideal if you want to run the application.
 
+1. Build and run the application
 ```
 docker-compose build
 docker-compose up
+```
+2. Browse the Backend first. The migrations are applied on the first request.
+
+```
+http://localhost:8080/hc
+```
+It should display **Healthy**. 
+It is possible when the database is initializing to get errors or a temporary **Unhealthy** status. 
+If that happens the container restarts itself until it is able to connect to the database.
+
+3. Browse the web application
+
+```
+http://localhost:8081/
 ```
 
 ### Installation
