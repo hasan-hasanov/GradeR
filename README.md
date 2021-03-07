@@ -73,6 +73,7 @@ http://localhost:8080/hc
 It should display **Healthy**. 
 It is possible when the database is initializing to get errors or a temporary **Unhealthy** status. 
 If that happens the container restarts itself until it is able to connect to the database.
+Wait for a few seconds and hit refresh.
 
 3. Browse the web application
 
