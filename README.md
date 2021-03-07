@@ -9,7 +9,7 @@
 
   <p align="center">
     Grader is a simple application that presents available courses and is used to display grades of the students.
-    This is a simple proof of concept and all the similarities with the real world agencies is conicidental
+    This is a simple proof of concept and all the similarities with the real-world agencies is coincidental.
     <br />
     <br />
     <a href="https://github.com/hasan-hasanov/GradeR/issues">Report Bug</a>
@@ -21,7 +21,6 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
@@ -37,16 +36,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -92,7 +86,7 @@ Clone the repo:
    
 #### Api
 
-In order to build and run the api you need:
+In order to build and run the Api you need:
 
 #### Prerequisites
 
@@ -118,7 +112,7 @@ dotnet GradeR.dll
 ```
 https://localhost:44338/hc
 ```
-If everything is up and running it should display **Healthy**
+If everything is up and running, it should display **Healthy**
 
 #### Front-end
 
@@ -152,7 +146,7 @@ If everything is up and running you'll see the application
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
