@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  db:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: lAKB8oJgz8oFSa43ENSY5dMOAxbg1O
+      ACCEPT_EULA: "Y"
   grader:
     image: hasanhasanov/grader
     build:
@@ -13,11 +21,3 @@ services:
       - "8080:80"
     depends_on: 
       - db
-  db:
-    container_name: mssql
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - "1433:1433"
-    environment:
-      SA_PASSWORD: lAKB8oJgz8oFSa43ENSY5dMOAxbg1O
-      ACCEPT_EULA: "Y"
