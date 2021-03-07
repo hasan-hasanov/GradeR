@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.IO;
 
 namespace DAL.Migrations
 {
@@ -198,6 +199,8 @@ namespace DAL.Migrations
                 name: "IX_Teachers_RankId",
                 table: "Teachers",
                 column: "RankId");
+
+            migrationBuilder.Sql(File.ReadAllText(@$"{AppContext.BaseDirectory}Seed/Seed.sql"));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
