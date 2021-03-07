@@ -22,3 +22,18 @@ services:
       - "8080:80"
     depends_on: 
       - db
+
+  grader-front-end:
+    image: grader-front-end
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: src/Front-End/grader/Dockerfile
+      args:
+        VUE_APP_API_URL: http://localhost:8080
+    environment:
+      - VUE_APP_API_URL=http://localhost:8080
+    ports:
+      - "8081:80"
+    depends_on: 
+      - grader

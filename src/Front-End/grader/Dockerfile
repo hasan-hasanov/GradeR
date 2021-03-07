@@ -5,9 +5,9 @@ ARG VUE_APP_API_URL
 ENV VUE_APP_API_URL ${VUE_APP_API_URL}
 
 WORKDIR /app
-COPY package*.json ./
+COPY src/Front-End/grader/package*.json ./
 RUN npm install
-COPY . .
+COPY src/Front-End/grader/ .
 
 RUN npm run build
 
