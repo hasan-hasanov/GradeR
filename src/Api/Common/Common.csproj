@@ -23,17 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Log\LogResources.Designer.cs">
+    <Compile Update="LogResources\LogMessageResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>LogResources.resx</DependentUpon>
+      <DependentUpon>LogMessageResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Log\LogResources.resx">
+    <EmbeddedResource Update="LogResources\LogMessageResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>LogMessageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

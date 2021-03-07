@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using MediatR;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
@@ -28,7 +28,7 @@ namespace GradeR.Controllers
         [ODataRoute]
         public async Task<IList<GradeResponseModel>> Get()
         {
-            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(GradeController), nameof(Get)));
+            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogMessageResources.ControllerFound, nameof(GradeController), nameof(Get)));
 
             IList<GradeResponseModel> gradeResponse = await _mediator.Send(new GetAllGradesRequestModel());
             return gradeResponse;
@@ -38,7 +38,7 @@ namespace GradeR.Controllers
         [ODataRoute]
         public async Task<IActionResult> Post([FromBody] PostGradeRequestModel model)
         {
-            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(GradeController), nameof(Post)));
+            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogMessageResources.ControllerFound, nameof(GradeController), nameof(Post)));
 
             await _mediator.Send(model);
             return NoContent();

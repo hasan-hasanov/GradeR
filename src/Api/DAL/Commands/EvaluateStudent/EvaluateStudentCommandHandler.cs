@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Commands;
 using Core.Entities;
 using Microsoft.Extensions.Logging;
@@ -20,7 +20,7 @@ namespace DAL.Commands.EvaluateStudent
 
         public async Task HandleAsync(EvaluateStudentCommand command, CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation(LogEvents.InsertingItem, string.Format(LogResources.InsertingItem, nameof(Grade)));
+            _logger.LogInformation(LogEvents.InsertingItem, string.Format(LogMessageResources.InsertingItem, nameof(Grade)));
             Grade grade = new Grade()
             {
                 Student = command.Student,
@@ -31,7 +31,7 @@ namespace DAL.Commands.EvaluateStudent
 
             await _context.AddAsync(grade, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation(LogEvents.InsertedItem, string.Format(LogResources.InsertedItem, nameof(Grade)));
+            _logger.LogInformation(LogEvents.InsertedItem, string.Format(LogMessageResources.InsertedItem, nameof(Grade)));
         }
     }
 }

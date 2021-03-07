@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using DAL.Queries.GetAllStudents;
@@ -30,9 +30,9 @@ namespace Services.Handlers.StudentHandlers
         {
             IList<Student> students = await _getAllStudentsQueryHandler.HandleAsync(new GetAllStudentsQuery(), cancellationToken);
 
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(IList<StudentResponseModel>)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssemblingResponse, nameof(IList<StudentResponseModel>)));
             IList<StudentResponseModel> studentResponse = students.Select(s => new StudentResponseModel(s)).ToList();
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(IList<StudentResponseModel>)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssembledResponse, nameof(IList<StudentResponseModel>)));
 
             return studentResponse;
         }

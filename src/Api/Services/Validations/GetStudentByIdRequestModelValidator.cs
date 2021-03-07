@@ -1,5 +1,5 @@
 ﻿using Common.Exceptions;
-using Common.Log;
+using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using Core.Validation;
@@ -31,21 +31,21 @@ namespace Services.Validations
         {
             List<string> errorMessages = new List<string>();
 
-            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(model.Id)));
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogMessageResources.ValidatingItem, nameof(model.Id)));
             Student student = await _getStudentByIdQueryHandler.HandleAsync(new GetStudentByIdQuery(model.Id), cancellationToken);
             if (student == null)
             {
                 string message = $"{nameof(Student)} with id {model.Id} not found";
-                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(model.Id), message));
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogMessageResources.ValidationFailed, nameof(model.Id), message));
                 errorMessages.Add(message);
             }
 
-            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(model.Id)));
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogMessageResources.ValidatedItem, nameof(model.Id)));
 
             if (errorMessages.Any())
             {
                 string message = string.Join(Environment.NewLine, errorMessages);
-                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogResources.ValidationFailed, nameof(GetStudentByIdRequestModel), message));
+                _logger.LogWarning(LogEvents.ValidationFailed, string.Format(LogMessageResources.ValidationFailed, nameof(GetStudentByIdRequestModel), message));
                 throw new NotFoundException(message);
             }
         }

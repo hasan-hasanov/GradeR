@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using Microsoft.EntityFrameworkCore;
@@ -21,16 +21,16 @@ namespace DAL.Queries.GetTeacherById
 
         public async Task<Teacher> HandleAsync(GetTeacherByIdQuery query, CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Teacher), query.Id));
+            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogMessageResources.GettingItem, nameof(Teacher), query.Id));
             Teacher teacher = await _context.Teachers
                 .FirstOrDefaultAsync(t => t.Id == query.Id, cancellationToken);
 
             if (teacher == null)
             {
-                _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogResources.GetItemNotFound, nameof(Teacher), query.Id));
+                _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogMessageResources.GetItemNotFound, nameof(Teacher), query.Id));
             }
 
-            _logger.LogInformation(LogEvents.GotItem, string.Format(LogResources.GotItem, nameof(Teacher)));
+            _logger.LogInformation(LogEvents.GotItem, string.Format(LogMessageResources.GotItem, nameof(Teacher)));
             return teacher;
         }
     }

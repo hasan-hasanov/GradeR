@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using MediatR;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Routing;
@@ -28,7 +28,7 @@ namespace GradeR.Controllers
         [ODataRoute]
         public async Task<IList<CourseResponseModel>> Get()
         {
-            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(CourseController), nameof(Get)));
+            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogMessageResources.ControllerFound, nameof(CourseController), nameof(Get)));
 
             IList<CourseResponseModel> courseGradeResponse = await _mediator.Send(new GetCourseRequestModel());
             return courseGradeResponse;
@@ -39,7 +39,7 @@ namespace GradeR.Controllers
         [ODataRoute("({id})")]
         public async Task<CourseResponseModel> GetCourse([FromODataUri] long id)
         {
-            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogResources.ControllerFound, nameof(CourseController), nameof(GetCourse)));
+            _logger.LogInformation(LogEvents.ControllerFound, string.Format(LogMessageResources.ControllerFound, nameof(CourseController), nameof(GetCourse)));
 
             CourseResponseModel courseGradeResponse = await _mediator.Send(new GetCourseByIdRequestModel(id));
             return courseGradeResponse;

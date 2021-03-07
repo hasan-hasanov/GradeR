@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using Core.Validation;
@@ -30,15 +30,15 @@ namespace Services.Handlers.StudentHandlers
 
         public async Task<StudentResponseModel> Handle(GetStudentByIdRequestModel request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogResources.ValidatingItem, nameof(GetStudentByIdRequestModel)));
+            _logger.LogInformation(LogEvents.ValidatingItem, string.Format(LogMessageResources.ValidatingItem, nameof(GetStudentByIdRequestModel)));
             await _validator.Validate(request);
-            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogResources.ValidatedItem, nameof(GetStudentByIdRequestModel)));
+            _logger.LogInformation(LogEvents.ValidatedItem, string.Format(LogMessageResources.ValidatedItem, nameof(GetStudentByIdRequestModel)));
 
             Student student = await _getStudentByIdQueryHandler.HandleAsync(new GetStudentByIdQuery(request.Id));
 
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(StudentResponseModel)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssemblingResponse, nameof(StudentResponseModel)));
             StudentResponseModel studentResponse = new StudentResponseModel(student);
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(StudentResponseModel)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssembledResponse, nameof(StudentResponseModel)));
 
             return studentResponse;
         }

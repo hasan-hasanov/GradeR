@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using DAL.Queries.GetAllCourses;
@@ -30,9 +30,9 @@ namespace Services.Handlers.CourseHandlers
         {
             IList<Course> studentGrades = await _getAllCoursesQueryHandler.HandleAsync(new GetAllCoursesQuery(), cancellationToken);
 
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssemblingResponse, nameof(IList<CourseResponseModel>)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssemblingResponse, nameof(IList<CourseResponseModel>)));
             IList<CourseResponseModel> studentGradesResponse = studentGrades.Select(s => new CourseResponseModel(s)).ToList();
-            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogResources.AssembledResponse, nameof(IList<CourseResponseModel>)));
+            _logger.LogInformation(LogEvents.AssemblingResponse, string.Format(LogMessageResources.AssembledResponse, nameof(IList<CourseResponseModel>)));
 
             return studentGradesResponse;
         }

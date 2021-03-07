@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +21,7 @@ namespace DAL.Queries.GetStudentById
 
         public async Task<Student> HandleAsync(GetStudentByIdQuery query, CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogResources.GettingItem, nameof(Student), query.Id));
+            _logger.LogInformation(LogEvents.GettingItem, string.Format(LogMessageResources.GettingItem, nameof(Student), query.Id));
             Student student = await _context.Students
                 .Include(g => g.Grades)
                 .Include(c => c.Courses)
@@ -30,10 +30,10 @@ namespace DAL.Queries.GetStudentById
 
             if (student == null)
             {
-                _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogResources.GetItemNotFound, nameof(Student), query.Id));
+                _logger.LogWarning(LogEvents.GetItemNotFound, string.Format(LogMessageResources.GetItemNotFound, nameof(Student), query.Id));
             }
 
-            _logger.LogInformation(LogEvents.GotItem, string.Format(LogResources.GotItem, nameof(Student)));
+            _logger.LogInformation(LogEvents.GotItem, string.Format(LogMessageResources.GotItem, nameof(Student)));
             return student;
         }
     }

@@ -1,4 +1,4 @@
-﻿using Common.Log;
+﻿using Common.LogResources;
 using Core.Entities;
 using Core.Queries;
 using Microsoft.EntityFrameworkCore;
@@ -22,13 +22,13 @@ namespace DAL.Queries.GetAllStudents
 
         public async Task<IList<Student>> HandleAsync(GetAllStudentsQuery query, CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation(LogEvents.ListingItems, string.Format(LogResources.ListingItems, nameof(Student)));
+            _logger.LogInformation(LogEvents.ListingItems, string.Format(LogMessageResources.ListingItems, nameof(Student)));
             List<Student> students = await _context.Students
                 .Include(g => g.Grades)
                 .Include(c => c.Courses)
                 .ThenInclude(c => c.Course)
                 .ToListAsync(cancellationToken);
-            _logger.LogInformation(LogEvents.ListedItems, string.Format(LogResources.ListedItems, students.Count, nameof(Student)));
+            _logger.LogInformation(LogEvents.ListedItems, string.Format(LogMessageResources.ListedItems, students.Count, nameof(Student)));
 
             return students;
         }
