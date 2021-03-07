@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import config from '../../config/Config';
 
 const client = axios.create({
-    baseURL: config.GraderBaseUrl,
+    baseURL: process.env.VUE_APP_ROOT_API,
 });
 
 client.interceptors.request.use(request => {
